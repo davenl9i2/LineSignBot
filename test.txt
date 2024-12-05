@@ -1,2 +1,7 @@
-研究GUI
-更新簽到方式
+//使用 Map 快速查找
+var dataMap = new Map();
+for (var i = 0; i < data.length; i++) {
+  dataMap.set(data[i][0], i); // 假設第一列是名稱
+}
+// 快速查找
+var rowIndex = dataMap.get(userName);
