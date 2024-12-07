@@ -23,26 +23,26 @@ function doPost(e) {
   var userName = getName(user_id,groupid);
   
 
-  if(userMessage=="上班"){ 
+  if(userMessage=="進"){ 
     if(findDate(userName) == 'none'){
       joinTemp(userName);
-      replayMsg('✔️上班成功-'+ userName+ '\n'+getTime());
+      replayMsg('✔️進場-'+ userName+ '\n'+getTime());
     }else{
-      replayMsg('❌您尚未下班-'+ userName+ '\n請先下班');
+      replayMsg('❌您尚未出場-'+ userName+ '\n請先出場');
     } 
   }
 
-  if(userMessage.charAt(0)=="下班"){
+  if(userMessage.charAt(0)=="出"){
     if(findDate(userName) != 'none'){
-      replayMsg('✔️下班成功-'+ userName+ '\n'+getTime() +'\n工作內容:' + userMessage.substring(1) + '\n工作時間:' + calculateTimeDifference(findDate(userName)));
+      replayMsg('✔️離場-'+ userName+ '\n'+getTime() +'\n訓練內容:' + userMessage.substring(1) + '\n訓練時間:' + calculateTimeDifference(findDate(userName)));
       joinSheet(userName,calculateTimeDifference(findDate(userName)),userMessage.substring(1));
       delDate(userName);
     }else{
-      replayMsg('❌您尚未上班'+ userName );
+      replayMsg('❌您尚未進場'+ userName );
     }
   }
 
-  if(userMessage=="現場工作人員"){ 
+  if(userMessage=="誰在球室"){ 
     replayMsg(showTempDate());
   }
 
